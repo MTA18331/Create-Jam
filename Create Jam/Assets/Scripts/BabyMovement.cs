@@ -5,33 +5,40 @@ using UnityEngine;
 
 public class BabyMovement : MonoBehaviour
 {
-    //public GameObject player;
-   
-  
-    public GameObject point1;
+
+
+    
     int atTarget = 1;
-  
-    public float speed = 10f;
+    public float AggroDistance = 1f;
+    private float timer = 0;
+
+    private float timerMax = 0;
+    public GameObject point1;
     public GameObject point2;
-  
+
     public GameObject point3;
-  
+
 
     public GameObject point4;
+    public GameObject MainCamera;
+    public float speed = 10f;
 
-    // Use this for initialization
     void Start()
     {
-        
-        
+
+
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
-        if (atTarget==1)
+        if (atTarget == 0)
         {
-             move(point2);
+            move(MainCamera);
+        }
+        if (atTarget == 1)
+        {
+            move(point2);
         }
         else if (atTarget == 2)
         {
@@ -39,21 +46,32 @@ public class BabyMovement : MonoBehaviour
         }
         else if (atTarget == 3)
         {
-             move(point4);
+            move(point4);
         }
         else if (atTarget == 4)
         {
-             move(point1);
+            move(point1);
         }
     }
 
     void move(GameObject goal)
+    {
+        if (atTarget == 0)
         {
-            
-            if (this.transform.position.x +0.2>= goal.transform.position.x & this.transform.position.x - 0.2 <= goal.transform.position.x & this.transform.position.z+0.2>= goal.transform.position.z & this.transform.position.z - 0.2 <= goal.transform.position.z)
-            {
-            Debug.Log(atTarget);
-            // The step size is equal to speed times frame time.
+            if (!Wait(0.3f)) return;
+            timer = 0;
+            Debug.Log("hej");
+        }
+        if (this.transform.position.x + AggroDistance >= MainCamera.transform.position.x & this.transform.position.x - AggroDistance <= MainCamera.transform.position.x & this.transform.position.z + AggroDistance >= MainCamera.transform.position.z & this.transform.position.z - AggroDistance <= MainCamera.transform.position.z)
+        {
+            goal = MainCamera;
+            atTarget = 0;
+
+
+        }
+        else if (this.transform.position.x + 0.2 >= goal.transform.position.x & this.transform.position.x - 0.2 <= goal.transform.position.x & this.transform.position.z + 0.2 >= goal.transform.position.z & this.transform.position.z - 0.2 <= goal.transform.position.z)
+        {
+
             if (atTarget == 4)
             {
 
@@ -63,19 +81,30 @@ public class BabyMovement : MonoBehaviour
             {
                 atTarget++;
             }
-            
 
-            }
-            else
-            {
+
+        }
+        else
+        {
             float step = speed * Time.deltaTime + 0.3f;
 
-                
-                transform.position = Vector3.MoveTowards(this.transform.position, goal.transform.position, step);
-           
-            }
-        }
 
-            
+            transform.position = Vector3.MoveTowards(this.transform.position, goal.transform.position, step);
+
+        }
     }
 
+    bool Wait(float seconds)
+    {
+        timerMax = seconds;
+
+        timer += Time.deltaTime;
+
+        if (timer >= timerMax)
+        {
+            return true; //max reached - waited x - seconds
+        }
+
+        return false;
+    }
+}
