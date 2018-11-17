@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour {
-
+    #region setRender
     public Renderer rend;
 	void Awake () {
         rend = GetComponent<Renderer>();
 	}
+    #endregion
+
+    public Item item;
 
     private Color startColor;
 
@@ -28,6 +31,7 @@ public class Interactable : MonoBehaviour {
         }
         rend.material.color = Color.red;
         InteractionManager.instance.interactionTarget = gameObject;
+        InteractionManager.instance.setItem(item);
     }
 
     private void OnMouseExit()
@@ -38,5 +42,6 @@ public class Interactable : MonoBehaviour {
         }
         rend.material.color = startColor;
         InteractionManager.instance.interactionTarget = null;
+        InteractionManager.instance.setItem(null);
     }
 }
