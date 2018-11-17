@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementV2 : MonoBehaviour {
-
+   
     public float speed = 6.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
@@ -36,6 +36,16 @@ public class PlayerMovementV2 : MonoBehaviour {
             }
         }
 
+        if ( InfectionCounter.currentInfection >= 73 && InfectionCounter.currentInfection <100)
+        {
+            moveDirection = new Vector3(Input.GetAxis("Vertical"), 0.0f, Input.GetAxis("Horizontal"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection = moveDirection * speed;
+        }
+        if (InfectionCounter.currentInfection >= 100)
+        {
+            moveDirection = new Vector3(Input.GetAxis("0"), 0.0f, Input.GetAxis("0"));
+        }
         // Apply gravity
         moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
 

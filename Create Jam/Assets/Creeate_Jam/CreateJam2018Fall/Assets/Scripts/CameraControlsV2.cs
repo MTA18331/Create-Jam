@@ -16,8 +16,19 @@ public class CameraControlsV2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        rotateCamera();
-        moveCamera();
+        if (InfectionCounter.currentInfection <= 99)
+        {
+            rotateCamera();
+            moveCamera();
+        }
+        else 
+        {
+            print("you are dead");
+
+
+        }
+
+
 
     }
 
