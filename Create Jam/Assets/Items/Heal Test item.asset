@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d7bcd2422630a4281876d6be68871b, type: 3}
-  m_Name: test item
+  m_Name: Heal Test item
   m_EditorClassIdentifier: 
-  name: Box of doom
+  name: new item
   icon: {fileID: 0}
-  prefab: {fileID: 1924369263290920, guid: 3fbdcd6de409980498c5f80d4b2e6bba, type: 2}
-  _type: 0
+  prefab: {fileID: 0}
+  _type: 1
