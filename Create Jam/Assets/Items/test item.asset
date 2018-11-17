@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: test item
   m_EditorClassIdentifier: 
   name: Box of doom
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0a9075313bf48a54b814eed79405d779, type: 3}
   prefab: {fileID: 1924369263290920, guid: 3fbdcd6de409980498c5f80d4b2e6bba, type: 2}
+  healAmount: 0
   _type: 0
