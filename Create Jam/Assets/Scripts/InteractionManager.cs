@@ -20,9 +20,16 @@ public class InteractionManager : MonoBehaviour {
     public GameObject interactionTarget;
     public Item item;
 
+    public GameObject throwable;
     public bool targetEnemies = false;
+    public GameObject enemyTarget;
+    public float bulletSpeed =0.7f;
 
     private Item useItem;
+    private bool itemThown = false;
+    private GameObject objToAttWith;
+    private int slot;
+    private GameObject tempEnemyTarget;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))//left click
@@ -30,6 +37,17 @@ public class InteractionManager : MonoBehaviour {
             pickUpItem();
         }
         useItems();
+        if(Input.GetKeyDown(KeyCode.Mouse0) && enemyTarget != null)
+        {
+            tempEnemyTarget = enemyTarget;
+            throwObject(tempEnemyTarget.transform, player, objToAttWith, slot);
+            itemThown = true;
+            targetEnemies = false;
+        }
+        if(throwable != null && tempEnemyTarget.gameObject != null)
+        {
+            StartCoroutine(moveThrowable(throwable, tempEnemyTarget.transform));
+        }
     }
 
     public void setItem(Item targetItem)
@@ -44,7 +62,7 @@ public class InteractionManager : MonoBehaviour {
         }
         if(InventoryManager.instance.findOpenSlot() >= 0)
         {
-            Debug.Log("Slot: " + InventoryManager.instance.findOpenSlot());
+            //Debug.Log("Slot: " + InventoryManager.instance.findOpenSlot());
             InventoryManager.instance.inventory[InventoryManager.instance.findOpenSlot()] = item;
             Destroy(interactionTarget.gameObject);
         }
@@ -53,52 +71,134 @@ public class InteractionManager : MonoBehaviour {
             //do something to tell play that inventory is full
             Debug.Log("Invetory is full!");
         }
-    }
+    } //getting item into inventory
 
     void useItems()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("1 was pressed!");
             if(InventoryManager.instance.inventory[0] != null) 
             {
                 useItem = InventoryManager.instance.inventory[0];
-                Debug.Log("type: " + useItem.getItemType());
-                //use item
+                if (useItem.getItemType().Equals("Damage"))
+                {
+                    attackEnemy(useItem.prefab,1);
+                }
+                if (useItem.getItemType().Equals("Heal"))
+                {
+                    heal(useItem.healAmount,1);
+                }
                 //change UI
-                InventoryManager.instance.inventory[0] = null;
+                //InventoryManager.instance.inventory[0] = null;
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log("2 was pressed!");
             if (InventoryManager.instance.inventory[1] != null)
             {
-                //use item
+                useItem = InventoryManager.instance.inventory[1];
+                if (useItem.getItemType().Equals("Damage"))
+                {
+                    attackEnemy(useItem.prefab,2);
+                }
+                if (useItem.getItemType().Equals("Heal"))
+                {
+                    heal(useItem.healAmount, 1);
+                }
                 //change UI
-                InventoryManager.instance.inventory[1] = null;
+                //InventoryManager.instance.inventory[1] = null;
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Debug.Log("3 was pressed!");
             if (InventoryManager.instance.inventory[2] != null)
             {
-                //use item
+                useItem = InventoryManager.instance.inventory[2];
+                if (useItem.getItemType().Equals("Damage"))
+                {
+                    attackEnemy(useItem.prefab,3);
+                }
+                if (useItem.getItemType().Equals("Heal"))
+                {
+                    heal(useItem.healAmount, 1);
+                }
                 //change UI
-                InventoryManager.instance.inventory[2] = null;
+                //InventoryManager.instance.inventory[2] = null;
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Debug.Log("4 was pressed!");
             if (InventoryManager.instance.inventory[3] != null)
             {
-                //use item
+                useItem = InventoryManager.instance.inventory[3];
+                if (useItem.getItemType().Equals("Damage"))
+                {
+                    attackEnemy(useItem.prefab,4);
+                }
+                if (useItem.getItemType().Equals("Heal"))
+                {
+                    heal(useItem.healAmount, 1);
+                }
                 //change UI
-                InventoryManager.instance.inventory[3] = null;
+                //InventoryManager.instance.inventory[3] = null;
             }
         }
     }
 
+    void attackEnemy(GameObject prefab, int inventorySlot)
+    {
+        Debug.Log("Attacking enemy");
+        targetEnemies = true;
+        setObjectToAttackWith(prefab);
+        setInventorySlot(inventorySlot);
+    }
+
+    void heal(float healAmount, int inventorySlot)
+    {
+        Debug.Log("Reducing insanity");
+        InfectionCounter.instance.infectionLevel -= healAmount;//instant heal
+        if(InfectionCounter.instance.infectionLevel < 0)
+        {
+            InfectionCounter.instance.infectionLevel = 0;
+        }
+        InventoryManager.instance.inventory[inventorySlot - 1] = null; //removeing heal item from inventory
+    }
+
+    void throwObject(Transform target, Transform origin, GameObject itemToTrow, int inventorySlot)
+    {
+        throwable = GameObject.Instantiate(itemToTrow, origin.position, origin.rotation);
+        //do something to throw item at target
+        //StartCoroutine(moveThrowable(Throwable, target));
+
+        //removing item from inventory
+        InventoryManager.instance.inventory[inventorySlot - 1] = null;
+        Debug.Log("Setting slot " + (inventorySlot - 1) + " to null");
+    } //removing damage item from inventory item here
+
+    void setObjectToAttackWith(GameObject obj)
+    {
+        objToAttWith = obj;
+    }
+
+    void setInventorySlot(int inventorySlot)
+    {
+        slot = inventorySlot;
+    }
+    public void setEnemyTarget(GameObject Enemy)
+    {
+        enemyTarget = Enemy;
+    }
+
+    IEnumerator moveThrowable(GameObject objToMove, Transform target)
+    {
+        objToMove.transform.position = Vector3.Slerp(objToMove.transform.position, target.position, bulletSpeed * Time.deltaTime);
+        if((objToMove.transform.position - target.position).magnitude < 0.5f)
+        {
+            //play bullet destroy animation
+            Destroy(objToMove);
+            //play enemy destroy animation
+            Destroy(target.gameObject);
+        }
+        yield return new WaitForSeconds(0f);    
+    }
 }

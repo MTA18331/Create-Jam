@@ -12,11 +12,20 @@ public class Item : ScriptableObject {
         Heal
     };
 
+    public float healAmount;
     public type _type; 
 
-    public type getItemType()
+    public string getItemType()
     {
-        return _type;
+        if(_type == type.Damage)
+        {
+            return "Damage";
+        }
+        if(_type == type.Heal)
+        {
+            return "Heal";
+        }
+        return "nothing";
     }
 
 

@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InfectionCounter : MonoBehaviour {
+    #region Singelton
+    public static InfectionCounter instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
     public GameObject player;
     public GameObject cube;
 
