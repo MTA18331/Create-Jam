@@ -12,5 +12,12 @@ public class Item : ScriptableObject {
         Heal
     };
 
+    public type _type; 
+
+    public type getItemType()
+    {
+        return _type;
+    }
+
 
 }

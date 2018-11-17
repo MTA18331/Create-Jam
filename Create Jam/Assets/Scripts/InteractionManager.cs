@@ -20,6 +20,9 @@ public class InteractionManager : MonoBehaviour {
     public GameObject interactionTarget;
     public Item item;
 
+    public bool targetEnemies = false;
+
+    private Item useItem;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))//left click
@@ -59,6 +62,8 @@ public class InteractionManager : MonoBehaviour {
             Debug.Log("1 was pressed!");
             if(InventoryManager.instance.inventory[0] != null) 
             {
+                useItem = InventoryManager.instance.inventory[0];
+                Debug.Log("type: " + useItem.getItemType());
                 //use item
                 //change UI
                 InventoryManager.instance.inventory[0] = null;

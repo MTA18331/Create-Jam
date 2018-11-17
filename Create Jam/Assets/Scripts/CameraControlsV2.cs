@@ -13,9 +13,14 @@ public class CameraControlsV2 : MonoBehaviour {
 	void Awake () {
         Cursor.lockState = CursorLockMode.Locked;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        temp = offset;
+    }
+
+    // Update is called once per frame
+    void Update () {
         rotateCamera();
         moveCamera();
         newoffset();

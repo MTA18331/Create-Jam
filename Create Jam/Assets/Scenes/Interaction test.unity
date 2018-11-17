@@ -261,6 +261,7 @@ MonoBehaviour:
   offset: {x: 0, y: 2, z: 0}
   mouseSensitivity: 2
   smoothFollow: 0.5
+  temp: {x: 0, y: 0, z: 0}
 --- !u!81 &441937139
 AudioListener:
   m_ObjectHideFlags: 0
@@ -768,6 +769,7 @@ MonoBehaviour:
   player: {fileID: 441937141}
   interactionTarget: {fileID: 0}
   item: {fileID: 0}
+  targetEnemies: 0
 --- !u!4 &965111460
 Transform:
   m_ObjectHideFlags: 0
