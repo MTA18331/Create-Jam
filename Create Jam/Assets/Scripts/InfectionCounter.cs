@@ -8,8 +8,9 @@ public class InfectionCounter : MonoBehaviour {
 
     public float infectionStart = 0;
     public static float currentInfection;
+    public static float previouInfection;
     public float infectionLevel;
-    float infection = 0.1F;
+    float infection = 0.01F;
 
     bool dead = false;
 
@@ -19,6 +20,7 @@ public class InfectionCounter : MonoBehaviour {
         
         currentInfection = infectionStart;
         infectionLevel = infectionStart;
+        previouInfection = infectionStart;
 	}
 	
 
@@ -27,6 +29,7 @@ public class InfectionCounter : MonoBehaviour {
 	void Update () {
         if ((player.transform.position-cube.transform.position).sqrMagnitude<5*5)
         {
+            previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
@@ -48,7 +51,7 @@ public class InfectionCounter : MonoBehaviour {
         dead = true;
         if (player != null)
         {
-            Destroy(player);
+            Destroy(gameObject);
             print("hello");
         }
         else
