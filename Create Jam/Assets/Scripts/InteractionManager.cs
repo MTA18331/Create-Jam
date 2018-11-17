@@ -86,7 +86,7 @@ public class InteractionManager : MonoBehaviour {
                 }
                 if (useItem.getItemType().Equals("Heal"))
                 {
-                    heal();
+                    heal(useItem.healAmount,1);
                 }
                 //change UI
                 //InventoryManager.instance.inventory[0] = null;
@@ -103,7 +103,7 @@ public class InteractionManager : MonoBehaviour {
                 }
                 if (useItem.getItemType().Equals("Heal"))
                 {
-                    heal();
+                    heal(useItem.healAmount, 1);
                 }
                 //change UI
                 //InventoryManager.instance.inventory[1] = null;
@@ -120,7 +120,7 @@ public class InteractionManager : MonoBehaviour {
                 }
                 if (useItem.getItemType().Equals("Heal"))
                 {
-                    heal();
+                    heal(useItem.healAmount, 1);
                 }
                 //change UI
                 //InventoryManager.instance.inventory[2] = null;
@@ -137,7 +137,7 @@ public class InteractionManager : MonoBehaviour {
                 }
                 if (useItem.getItemType().Equals("Heal"))
                 {
-                    heal();
+                    heal(useItem.healAmount, 1);
                 }
                 //change UI
                 //InventoryManager.instance.inventory[3] = null;
@@ -153,9 +153,15 @@ public class InteractionManager : MonoBehaviour {
         setInventorySlot(inventorySlot);
     }
 
-    void heal()
+    void heal(float healAmount, int inventorySlot)
     {
         Debug.Log("Reducing insanity");
+        InfectionCounter.instance.infectionLevel -= healAmount;//instant heal
+        if(InfectionCounter.instance.infectionLevel < 0)
+        {
+            InfectionCounter.instance.infectionLevel = 0;
+        }
+        InventoryManager.instance.inventory[inventorySlot - 1] = null; //removeing heal item from inventory
     }
 
     void throwObject(Transform target, Transform origin, GameObject itemToTrow, int inventorySlot)
@@ -167,7 +173,7 @@ public class InteractionManager : MonoBehaviour {
         //removing item from inventory
         InventoryManager.instance.inventory[inventorySlot - 1] = null;
         Debug.Log("Setting slot " + (inventorySlot - 1) + " to null");
-    } //removing inventory item here
+    } //removing damage item from inventory item here
 
     void setObjectToAttackWith(GameObject obj)
     {
