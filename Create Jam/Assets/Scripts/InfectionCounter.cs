@@ -15,7 +15,8 @@ public class InfectionCounter : MonoBehaviour {
     public GameObject player;
     public GameObject baby1;
     public GameObject baby2;
-
+    public GameObject quitcanvas;
+    public GameObject ui;
     public float infectionStart = 0;
     public static float currentInfection;
     public static float previouInfection;
@@ -61,6 +62,7 @@ public class InfectionCounter : MonoBehaviour {
             infection = 0;
             infectionLevel = 100;
             death();
+
            
         }
 
@@ -74,6 +76,9 @@ public class InfectionCounter : MonoBehaviour {
         if (player != null)
         {
             Destroy(gameObject);
+            Cursor.lockState = CursorLockMode.None;
+           // ui.SetActive(false);
+            quitcanvas.SetActive(true);
             print("hello");
         }
         else
