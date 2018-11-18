@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour {
     }
     #endregion
 
-    public int itemCarryLimit = 4;
+    public int itemCarryLimit = 3;
     public Item[] inventory;
 
     private void Start()

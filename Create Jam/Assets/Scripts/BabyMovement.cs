@@ -9,7 +9,7 @@ public class BabyMovement : MonoBehaviour
 
     
     int atTarget = 1;
-    public float AggroDistance = 1f;
+    public float AggroDistance = 2f;
     private float timer = 0;
 
     private float timerMax = 0;
@@ -21,7 +21,7 @@ public class BabyMovement : MonoBehaviour
 
     public GameObject point4;
     public GameObject MainCamera;
-    public float speed = 10f;
+    public float speed = 0.02f;
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class BabyMovement : MonoBehaviour
     {
         if (atTarget == 0)
         {
-            if (!Wait(0.3f)) return;
+            if (!Wait(0.1f)) return;
             timer = 0;
             Debug.Log("hej");
         }
@@ -86,7 +86,7 @@ public class BabyMovement : MonoBehaviour
         }
         else
         {
-            float step = speed * Time.deltaTime + 0.3f;
+            float step = speed * Time.deltaTime + 0.1f;
 
 
             transform.position = Vector3.MoveTowards(this.transform.position, goal.transform.position, step);
