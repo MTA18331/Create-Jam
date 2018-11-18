@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d7bcd2422630a4281876d6be68871b, type: 3}
-  m_Name: Heal Test item
+  m_Name: Hammer
   m_EditorClassIdentifier: 
-  name: Heal
-  icon: {fileID: 21300000, guid: 3a084173f93ea704b81e384ba3e3f2e9, type: 3}
-  prefab: {fileID: 1924369263290920, guid: 3fbdcd6de409980498c5f80d4b2e6bba, type: 2}
+  name: new item
+  icon: {fileID: 21300000, guid: c0c236f0e8de8bf40b1243497b65ab02, type: 3}
+  prefab: {fileID: 100000, guid: 5a5e13783eedce94993869bdea8070e3, type: 3}
   healAmount: 0
-  _type: 1
+  _type: 0

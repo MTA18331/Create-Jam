@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractionManager : MonoBehaviour {
 
@@ -24,12 +25,18 @@ public class InteractionManager : MonoBehaviour {
     public bool targetEnemies = false;
     public GameObject enemyTarget;
     public float bulletSpeed =0.7f;
+    public RawImage slot1;
+    public RawImage slot2;
+    public RawImage slot3;
+    public RawImage slot4;
 
     private Item useItem;
     private bool itemThown = false;
     private GameObject objToAttWith;
     private int slot;
     private GameObject tempEnemyTarget;
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))//left click
@@ -62,8 +69,32 @@ public class InteractionManager : MonoBehaviour {
         }
         if(InventoryManager.instance.findOpenSlot() >= 0)
         {
+            Item itemPickedUp = item;
+            int inventoryslot = InventoryManager.instance.findOpenSlot();
             //Debug.Log("Slot: " + InventoryManager.instance.findOpenSlot());
-            InventoryManager.instance.inventory[InventoryManager.instance.findOpenSlot()] = item;
+            InventoryManager.instance.inventory[inventoryslot] = itemPickedUp;
+            if (inventoryslot == 0)
+            {
+                slot1.GetComponent<RawImage>().texture = itemPickedUp.icon.texture;
+                slot1.enabled = true;
+            }
+            if (inventoryslot == 1)
+            {
+                slot2.GetComponent<RawImage>().texture = itemPickedUp.icon.texture;
+                slot2.enabled = true;
+            }
+            if (inventoryslot == 2)
+            {
+                slot3.GetComponent<RawImage>().texture = itemPickedUp.icon.texture;
+                slot3.enabled = true;
+            }
+            if (inventoryslot == 3)
+            {
+                slot4.GetComponent<RawImage>().texture = itemPickedUp.icon.texture;
+                slot4.enabled = true;
+            }
+
+          
             Destroy(interactionTarget.gameObject);
         }
         else
@@ -162,6 +193,23 @@ public class InteractionManager : MonoBehaviour {
             InfectionCounter.instance.infectionLevel = 0;
         }
         InventoryManager.instance.inventory[inventorySlot - 1] = null; //removeing heal item from inventory
+        if (inventorySlot -1 == 0)
+        {
+            slot1.enabled = false;
+        }
+        if (inventorySlot -1 == 1)
+        {
+            slot2.enabled = false;
+        }
+        if (inventorySlot-1 == 2)
+        {
+            slot2.enabled = false;
+        }
+        if (inventorySlot-1 == 3)
+        {
+            slot2.enabled = false;
+        }
+
     }
 
     void throwObject(Transform target, Transform origin, GameObject itemToTrow, int inventorySlot)
@@ -173,7 +221,25 @@ public class InteractionManager : MonoBehaviour {
         //removing item from inventory
         InventoryManager.instance.inventory[inventorySlot - 1] = null;
         Debug.Log("Setting slot " + (inventorySlot - 1) + " to null");
+        if (inventorySlot - 1 == 0)
+        {
+            slot1.enabled = false;
+        }
+        if (inventorySlot - 1 == 1)
+        {
+            slot2.enabled = false;
+        }
+        if (inventorySlot - 1 == 2)
+        {
+            slot2.enabled = false;
+        }
+        if (inventorySlot - 1 == 3)
+        {
+            slot2.enabled = false;
+        }
+
     } //removing damage item from inventory item here
+
 
     void setObjectToAttackWith(GameObject obj)
     {

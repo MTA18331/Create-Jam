@@ -1,14 +1,64 @@
 fileFormatVersion: 2
-guid: 149e8e92328611540ba3c9645574f4e9
+guid: 925883ab27c3f3f449b13313a96d52fd
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: lambert6
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCube1
+    100000: pCylinder1
+    100002: pCylinder2
+    100004: pCylinder3
+    100006: pSphere1
+    100008: pSphere10
+    100010: pSphere2
+    100012: pSphere3
+    100014: pSphere4
+    100016: pSphere5
+    100018: pSphere6
+    100020: pSphere7
+    100022: pSphere8
+    100024: pSphere9
+    100026: //RootNode
+    100028: transform1
+    100030: transform10
+    100032: transform11
+    100034: transform12
+    100036: transform2
+    100038: transform3
+    100040: transform4
+    100042: transform5
+    100044: transform6
+    100046: transform7
+    100048: transform8
+    100050: transform9
+    400000: pCylinder1
+    400002: pCylinder2
+    400004: pCylinder3
+    400006: pSphere1
+    400008: pSphere10
+    400010: pSphere2
+    400012: pSphere3
+    400014: pSphere4
+    400016: pSphere5
+    400018: pSphere6
+    400020: pSphere7
+    400022: pSphere8
+    400024: pSphere9
+    400026: //RootNode
+    400028: transform1
+    400030: transform10
+    400032: transform11
+    400034: transform12
+    400036: transform2
+    400038: transform3
+    400040: transform4
+    400042: transform5
+    400044: transform6
+    400046: transform7
+    400048: transform8
+    400050: transform9
+    2100000: lambert1
+    2300000: pSphere10
+    3300000: pSphere10
+    4300000: pSphere10
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -40,7 +90,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 50
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -81,7 +131,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

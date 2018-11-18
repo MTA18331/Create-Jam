@@ -9,7 +9,7 @@ public class BabyMovement : MonoBehaviour
 
     
     int atTarget = 1;
-    public float AggroDistance = 1f;
+    public float AggroDistance = 2f;
     private float timer = 0;
 
     private float timerMax = 0;
@@ -21,7 +21,7 @@ public class BabyMovement : MonoBehaviour
 
     public GameObject point4;
     public GameObject MainCamera;
-    public float speed = 10f;
+    public float speed = 0.02f;
 
     void Start()
     {
@@ -58,9 +58,9 @@ public class BabyMovement : MonoBehaviour
     {
         if (atTarget == 0)
         {
-            if (!Wait(0.3f)) return;
-            timer = 0;
-            Debug.Log("hej");
+           // if (!Wait(0.1f)) return;
+           // timer = 0;
+            //Debug.Log("hej");
         }
         if (this.transform.position.x + AggroDistance >= MainCamera.transform.position.x & this.transform.position.x - AggroDistance <= MainCamera.transform.position.x & this.transform.position.z + AggroDistance >= MainCamera.transform.position.z & this.transform.position.z - AggroDistance <= MainCamera.transform.position.z)
         {
@@ -86,10 +86,10 @@ public class BabyMovement : MonoBehaviour
         }
         else
         {
-            float step = speed * Time.deltaTime + 0.3f;
+            float step = speed * Time.deltaTime + 0.1f;
 
-
-            transform.position = Vector3.MoveTowards(this.transform.position, goal.transform.position, step);
+            Vector3 ost = new Vector3 ((goal.transform.position.x), (this.transform.position.y), (goal.transform.position.z));
+            transform.position = Vector3.MoveTowards(this.transform.position, ost, step);
 
         }
     }
