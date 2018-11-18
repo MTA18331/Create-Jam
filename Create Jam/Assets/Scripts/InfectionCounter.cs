@@ -13,7 +13,8 @@ public class InfectionCounter : MonoBehaviour {
     #endregion
 
     public GameObject player;
-    public GameObject cube;
+    public GameObject baby1;
+    public GameObject baby2;
 
     public float infectionStart = 0;
     public static float currentInfection;
@@ -36,7 +37,19 @@ public class InfectionCounter : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if ((player.transform.position-cube.transform.position).sqrMagnitude<5*5)
+        if ((player.transform.position - this.transform.position).sqrMagnitude < 5 * 5)
+        {
+            previouInfection = currentInfection;
+            currentInfection += 0.001F;
+            infectionLevel += 0.001F;
+        }
+        if ((player.transform.position-baby1.transform.position).sqrMagnitude<5*5)
+        {
+            previouInfection = currentInfection;
+            currentInfection += infection;
+            infectionLevel += infection;
+        }
+        if ((player.transform.position - baby2.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
