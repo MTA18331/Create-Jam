@@ -18,10 +18,12 @@ public class BabyMovement : MonoBehaviour
 
     public GameObject point3;
 
-
+    
     public GameObject point4;
     public GameObject MainCamera;
     public float speed = 0.02f;
+    
+
 
     void Start()
     {
@@ -56,6 +58,7 @@ public class BabyMovement : MonoBehaviour
 
     void move(GameObject goal)
     {
+        
         if (atTarget == 0)
         {
            // if (!Wait(0.1f)) return;
