@@ -32,7 +32,7 @@ public class InfectionCounter : MonoBehaviour {
     float infection = 0.01F;
 
     bool dead = false;
-
+    public GameObject PlayerCam;
         
 	// Use this for initialization
 	void Start () {
@@ -161,9 +161,12 @@ public class InfectionCounter : MonoBehaviour {
         dead = true;
         if (player != null)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            // play game over
+            //GameOver.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
-            ui.SetActive(false);
+            //ui.SetActive(false);
+            //PlayerCam.GetComponent<CameraControlsV2>().enabled = false;
             quitcanvas.SetActive(true);
             print("hello");
         }
