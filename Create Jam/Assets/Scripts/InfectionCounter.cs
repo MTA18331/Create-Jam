@@ -52,65 +52,95 @@ public class InfectionCounter : MonoBehaviour {
             currentInfection += 0.005F;
             infectionLevel += 0.005F;
         }
+        if(baby1 != null)
+        {
         if ((player.transform.position-baby1.transform.position).sqrMagnitude<5*5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if(baby2 != null)
+        {
         if ((player.transform.position - baby2.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if(baby3 != null)
+        {
         if ((player.transform.position - baby3.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if(baby4 != null)
+        {
         if ((player.transform.position - baby4.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if(baby6 != null)
+        {
         if ((player.transform.position - baby6.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if(baby7 != null)
+        {
         if ((player.transform.position - baby7.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if (baby8 != null)
+        {
         if ((player.transform.position - baby8.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if (baby9 != null)
+        {
+
         if ((player.transform.position - baby9.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
+        }
+        if(baby10 != null)
+        {
         if ((player.transform.position - baby10.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
         }
-        if ((player.transform.position - baby2.transform.position).sqrMagnitude < 5 * 5)
+        }
+        if(baby5 != null) {
+        if ((player.transform.position - baby5.transform.position).sqrMagnitude < 5 * 5)
         {
             previouInfection = currentInfection;
             currentInfection += infection;
             infectionLevel += infection;
+        }
         }
         if (infectionLevel >= 100)
         {
